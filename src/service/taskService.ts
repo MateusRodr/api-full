@@ -4,7 +4,7 @@ import prisma from "../prisma/client";
 const createTask = async(data:any) => {
     const parsedData = taskschema.parse(data);
 
-    const titleExists = await prisma.task.findUnique({
+    const titleExists = await prisma.task.findFirst({
       where: {
         title: parsedData.title
       }
@@ -15,7 +15,9 @@ const createTask = async(data:any) => {
     }
 
     const newTask = await prisma.task.create({
-      data: parsedData
+      data: {
+        title: parsedData.title,
+        status: parsedData.status}
     });
 
     return newTask;
@@ -26,7 +28,7 @@ const getAllTasks = async() => {
     return tasks;
 }
 
-const getTaskById = async(id:string) => {
+const getTaskById = async(id:number) => {
     const task = await prisma.task.findUnique({
       where: {
         id: id
@@ -63,7 +65,7 @@ const updateTask = async(id:number, data:any) => {
     return updatedTask;
 }
 
-const deleteTask = async(id:string) => {
+const deleteTask = async(id:number) => {
     const task = await prisma.task.findUnique({
       where: {
         id: id
