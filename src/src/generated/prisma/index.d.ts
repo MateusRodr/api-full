@@ -882,20 +882,20 @@ export namespace Prisma {
 
   export type TaskMinAggregateOutputType = {
     id: number | null
-    title: string | null
-    status: string | null
+    Title: string | null
+    Status: string | null
   }
 
   export type TaskMaxAggregateOutputType = {
     id: number | null
-    title: string | null
-    status: string | null
+    Title: string | null
+    Status: string | null
   }
 
   export type TaskCountAggregateOutputType = {
     id: number
-    title: number
-    status: number
+    Title: number
+    Status: number
     _all: number
   }
 
@@ -910,20 +910,20 @@ export namespace Prisma {
 
   export type TaskMinAggregateInputType = {
     id?: true
-    title?: true
-    status?: true
+    Title?: true
+    Status?: true
   }
 
   export type TaskMaxAggregateInputType = {
     id?: true
-    title?: true
-    status?: true
+    Title?: true
+    Status?: true
   }
 
   export type TaskCountAggregateInputType = {
     id?: true
-    title?: true
-    status?: true
+    Title?: true
+    Status?: true
     _all?: true
   }
 
@@ -1015,8 +1015,8 @@ export namespace Prisma {
 
   export type TaskGroupByOutputType = {
     id: number
-    title: string
-    status: string
+    Title: string
+    Status: string
     _count: TaskCountAggregateOutputType | null
     _avg: TaskAvgAggregateOutputType | null
     _sum: TaskSumAggregateOutputType | null
@@ -1040,37 +1040,37 @@ export namespace Prisma {
 
   export type TaskSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
-    status?: boolean
+    Title?: boolean
+    Status?: boolean
   }, ExtArgs["result"]["task"]>
 
   export type TaskSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
-    status?: boolean
+    Title?: boolean
+    Status?: boolean
   }, ExtArgs["result"]["task"]>
 
   export type TaskSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
-    status?: boolean
+    Title?: boolean
+    Status?: boolean
   }, ExtArgs["result"]["task"]>
 
   export type TaskSelectScalar = {
     id?: boolean
-    title?: boolean
-    status?: boolean
+    Title?: boolean
+    Status?: boolean
   }
 
-  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "status", ExtArgs["result"]["task"]>
+  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Title" | "Status", ExtArgs["result"]["task"]>
 
   export type $TaskPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Task"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      title: string
-      status: string
+      Title: string
+      Status: string
     }, ExtArgs["result"]["task"]>
     composites: {}
   }
@@ -1495,8 +1495,8 @@ export namespace Prisma {
    */
   interface TaskFieldRefs {
     readonly id: FieldRef<"Task", 'Int'>
-    readonly title: FieldRef<"Task", 'String'>
-    readonly status: FieldRef<"Task", 'String'>
+    readonly Title: FieldRef<"Task", 'String'>
+    readonly Status: FieldRef<"Task", 'String'>
   }
     
 
@@ -1874,8 +1874,8 @@ export namespace Prisma {
 
   export const TaskScalarFieldEnum: {
     id: 'id',
-    title: 'title',
-    status: 'status'
+    Title: 'Title',
+    Status: 'Status'
   };
 
   export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
@@ -1923,14 +1923,14 @@ export namespace Prisma {
     OR?: TaskWhereInput[]
     NOT?: TaskWhereInput | TaskWhereInput[]
     id?: IntFilter<"Task"> | number
-    title?: StringFilter<"Task"> | string
-    status?: StringFilter<"Task"> | string
+    Title?: StringFilter<"Task"> | string
+    Status?: StringFilter<"Task"> | string
   }
 
   export type TaskOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrder
-    status?: SortOrder
+    Title?: SortOrder
+    Status?: SortOrder
   }
 
   export type TaskWhereUniqueInput = Prisma.AtLeast<{
@@ -1938,14 +1938,14 @@ export namespace Prisma {
     AND?: TaskWhereInput | TaskWhereInput[]
     OR?: TaskWhereInput[]
     NOT?: TaskWhereInput | TaskWhereInput[]
-    title?: StringFilter<"Task"> | string
-    status?: StringFilter<"Task"> | string
+    Title?: StringFilter<"Task"> | string
+    Status?: StringFilter<"Task"> | string
   }, "id">
 
   export type TaskOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrder
-    status?: SortOrder
+    Title?: SortOrder
+    Status?: SortOrder
     _count?: TaskCountOrderByAggregateInput
     _avg?: TaskAvgOrderByAggregateInput
     _max?: TaskMaxOrderByAggregateInput
@@ -1958,47 +1958,47 @@ export namespace Prisma {
     OR?: TaskScalarWhereWithAggregatesInput[]
     NOT?: TaskScalarWhereWithAggregatesInput | TaskScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Task"> | number
-    title?: StringWithAggregatesFilter<"Task"> | string
-    status?: StringWithAggregatesFilter<"Task"> | string
+    Title?: StringWithAggregatesFilter<"Task"> | string
+    Status?: StringWithAggregatesFilter<"Task"> | string
   }
 
   export type TaskCreateInput = {
-    title: string
-    status: string
+    Title: string
+    Status: string
   }
 
   export type TaskUncheckedCreateInput = {
     id?: number
-    title: string
-    status: string
+    Title: string
+    Status: string
   }
 
   export type TaskUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    Title?: StringFieldUpdateOperationsInput | string
+    Status?: StringFieldUpdateOperationsInput | string
   }
 
   export type TaskUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    Title?: StringFieldUpdateOperationsInput | string
+    Status?: StringFieldUpdateOperationsInput | string
   }
 
   export type TaskCreateManyInput = {
     id?: number
-    title: string
-    status: string
+    Title: string
+    Status: string
   }
 
   export type TaskUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    Title?: StringFieldUpdateOperationsInput | string
+    Status?: StringFieldUpdateOperationsInput | string
   }
 
   export type TaskUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
+    Title?: StringFieldUpdateOperationsInput | string
+    Status?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2028,8 +2028,8 @@ export namespace Prisma {
 
   export type TaskCountOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
-    status?: SortOrder
+    Title?: SortOrder
+    Status?: SortOrder
   }
 
   export type TaskAvgOrderByAggregateInput = {
@@ -2038,14 +2038,14 @@ export namespace Prisma {
 
   export type TaskMaxOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
-    status?: SortOrder
+    Title?: SortOrder
+    Status?: SortOrder
   }
 
   export type TaskMinOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
-    status?: SortOrder
+    Title?: SortOrder
+    Status?: SortOrder
   }
 
   export type TaskSumOrderByAggregateInput = {

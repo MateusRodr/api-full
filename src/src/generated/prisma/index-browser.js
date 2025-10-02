@@ -119,8 +119,8 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.TaskScalarFieldEnum = {
   id: 'id',
-  title: 'title',
-  status: 'status'
+  Title: 'Title',
+  Status: 'Status'
 };
 
 exports.Prisma.SortOrder = {

@@ -6,7 +6,7 @@ const createTask = async(data:any) => {
 
     const titleExists = await prisma.task.findFirst({
       where: {
-        title: parsedData.title
+        Title: parsedData.title
       }
     });
 
@@ -16,8 +16,9 @@ const createTask = async(data:any) => {
 
     const newTask = await prisma.task.create({
       data: {
-        title: parsedData.title,
-        status: parsedData.status}
+        Title: parsedData.title,
+        Status: parsedData.status
+      }
     });
 
     return newTask;
@@ -59,7 +60,10 @@ const updateTask = async(id:number, data:any) => {
       where: {
         id: id
       },
-      data: parsedData
+      data: {
+        Title: parsedData.title,
+        Status: parsedData.status
+      }
     });
 
     return updatedTask;

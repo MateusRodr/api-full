@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import taskRoutes from "./routes/taskRoutes";
+require('dotenv').config();
 
 const app: Express = express();
 const Port = process.env.PORT || 3012;

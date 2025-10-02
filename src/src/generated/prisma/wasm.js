@@ -91,8 +91,8 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.TaskScalarFieldEnum = {
   id: 'id',
-  title: 'title',
-  status: 'status'
+  Title: 'Title',
+  Status: 'Status'
 };
 
 exports.Prisma.SortOrder = {
@@ -133,7 +133,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": "../../../../.env"
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.16.3",
@@ -151,13 +151,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Task {\n  id     Int    @id @default(autoincrement())\n  title  String\n  status String\n}\n",
-  "inlineSchemaHash": "3556586f9dec09327f8dc6800e037a433aef51b0561ca68a807cf3ad6c0c0473",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Task {\n  id     Int    @id @default(autoincrement())\n  Title  String\n  Status String\n}\n",
+  "inlineSchemaHash": "dcbfab9f6c36e6c5213bfe98012453ad42e97f395222367c2ec6220d578bb711",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Task\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Task\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"Title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"Status\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),
