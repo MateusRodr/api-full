@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    container_name: api
+    ports:
+      - "3013:3012"           # 3013 do host → 3012 do container
+    volumes:
+      - ./prisma/dev.db:/app/prisma/dev.db
+      - .:/app
+      - /app/node_modules
+    command: npm start
+
+  test:
+    build: .
+    container_name: api_test
+    depends_on:
+      - api
+    volumes:
+      - ./prisma/test.db:/app/prisma/dev.db
+      - .:/app
+      - /app/node_modules
+    command: npm test
