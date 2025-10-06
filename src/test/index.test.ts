@@ -5,11 +5,11 @@ const app = express();
 app.use(express.json());
 
 const user = (req: Request, res: Response) => {
-  res.status(200).json({title: 'Test Task', status: 'pending'});
+  res.status(200).json({title: 'Test Task', status: 'in-progress'});
 }
 
 const createUser = (req: Request, res: Response) => {
-    res.status(201).json({title: "estudar js", status: "pending"});
+    res.status(201).json({title: "estudar js", status: "in-progress"});
 }
 
 const configUser = (req: Request, res: Response) => {
@@ -33,7 +33,7 @@ describe('test routers API', () => {
     })
     
     it('test router POST', async () => {
-        const response = await request(app).post('/users').send({title: "estudar js", status: "pending"});
+        const response = await request(app).post('/users').send({title: "estudar js", status: "in-progress"});
         expect(response.status).toBe(201);
         expect(response.body).toHaveProperty('title', 'estudar js');
     })
