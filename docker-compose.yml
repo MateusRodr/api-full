@@ -5,11 +5,9 @@ services:
     build: .
     container_name: api
     ports:
-      - "3013:3012"           # 3013 do host → 3012 do container
+      - "3013:3012"
     volumes:
       - ./prisma/dev.db:/app/prisma/dev.db
-      - .:/app
-      - /app/node_modules
     command: npm start
 
   test:
@@ -19,6 +17,4 @@ services:
       - api
     volumes:
       - ./prisma/test.db:/app/prisma/dev.db
-      - .:/app
-      - /app/node_modules
     command: npm test
