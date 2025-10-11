@@ -1,89 +1,55 @@
 import { taskschema } from "../validations/taskvalidation";
-import prisma from "../prisma/client";
+import { Task } from "../prisma/entity/task.entity";
+import { PrismaTaskRepository } from "../repository/prisma-task-repository";
 
-const createTask = async(data:any) => {
+export class TaskService {
+  constructor(private taskRepository: PrismaTaskRepository) {}
+
+  async create(data: any) {
     const parsedData = taskschema.parse(data);
 
-    const titleExists = await prisma.task.findFirst({
-      where: {
-        Title: parsedData.title
-      }
-    });
-
+    const titleExists = await this.taskRepository.findByTitle(parsedData.title);
     if (titleExists) {
       throw new Error("Task with this title already exists");
     }
 
-    const newTask = await prisma.task.create({
-      data: {
-        Title: parsedData.title,
-        Status: parsedData.status
-      }
+    const task = new Task({
+      title: parsedData.title,
+      status: parsedData.status,
     });
 
-    return newTask;
-}
+    return await this.taskRepository.create(task);
+  }
 
-const getAllTasks = async() => {
-    const tasks = await prisma.task.findMany();
-    return tasks;
-}
+  async findAll() {
+    return await this.taskRepository.findAll();
+  }
 
-const getTaskById = async(id:number) => {
-    const task = await prisma.task.findUnique({
-      where: {
-        id: id
-      }
-    });
-
-    if (!task) {
-      throw new Error("Task not found");
-    }
-
+  async findById(id: number) {
+    const task = await this.taskRepository.findById(id);
+    if (!task) throw new Error("Task not found");
     return task;
-}
+  }
 
-const updateTask = async(id:number, data:any) => {
+  async update(id: number, data: any) {
     const parsedData = taskschema.parse(data);
+    const existing = await this.taskRepository.findById(id);
+    if (!existing) throw new Error("Task not found");
 
-    const task = await prisma.task.findUnique({
-      where: {
-        id: id
-      }
-    });
-
-    if (!task) {
-      throw new Error("Task not found");
-    }
-
-    const updatedTask = await prisma.task.update({
-      where: {
-        id: id
+    const updatedTask = new Task(
+      {
+        title: parsedData.title,
+        status: parsedData.status,
       },
-      data: {
-        Title: parsedData.title,
-        Status: parsedData.status
-      }
-    });
+      id
+    );
 
-    return updatedTask;
+    return await this.taskRepository.update(id, updatedTask);
+  }
+
+  async delete(id: number) {
+    const task = await this.taskRepository.findById(id);
+    if (!task) throw new Error("Task not found");
+    await this.taskRepository.delete(id);
+  }
 }
-
-const deleteTask = async(id:number) => {
-    const task = await prisma.task.findUnique({
-      where: {
-        id: id
-      }
-    });
-
-    if (!task) {
-      throw new Error("Task not found");
-    }
-
-    await prisma.task.delete({
-      where: {
-        id: id
-      }
-    });
-}
-export { createTask, getAllTasks, getTaskById, updateTask, deleteTask };

@@ -1,18 +1,19 @@
+// src/prisma/entity/task.entity.ts
 export interface taskProps {
   title: string;
   status: "in-progress" | "completed";
 }
 
 export class Task {
-  private _id: number;
+  private _id?: number;
   private props: taskProps;
 
-  constructor(props: taskProps, id: number) {
+  constructor(props: taskProps, id?: number) {
     this.props = props;
     this._id = id;
   }
 
-  get id(): number {
+  get id(): number | undefined {
     return this._id;
   }
 
@@ -22,5 +23,14 @@ export class Task {
 
   get status(): "in-progress" | "completed" {
     return this.props.status;
+  }
+
+  // Se quiser mudar o título ou status futuramente
+  set title(newTitle: string) {
+    this.props.title = newTitle;
+  }
+
+  set status(newStatus: "in-progress" | "completed") {
+    this.props.status = newStatus;
   }
 }
