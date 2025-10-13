@@ -1,13 +1,18 @@
 import { taskschema } from "../validations/taskvalidation";
 import { Task } from "../prisma/entity/task.entity";
 import { PrismaTaskRepository } from "../repository/prisma-task-repository";
+import { injectable, inject } from "tsyringe";
 
+
+@injectable()
 export class TaskService {
-  constructor(private taskRepository: PrismaTaskRepository) {}
+  constructor(
+    @inject(PrismaTaskRepository)
+    private taskRepository: PrismaTaskRepository
+  ) {}
 
   async create(data: any) {
     const parsedData = taskschema.parse(data);
-
     const titleExists = await this.taskRepository.findByTitle(parsedData.title);
     if (titleExists) {
       throw new Error("Task with this title already exists");

@@ -25,7 +25,6 @@ export class Task {
     return this.props.status;
   }
 
-  // Se quiser mudar o título ou status futuramente
   set title(newTitle: string) {
     this.props.title = newTitle;
   }
