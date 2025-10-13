@@ -1,9 +1,9 @@
+import "reflect-metadata";
+import './shared /container'
 import express, { Express } from "express";
 import taskRoutes from "./routes/taskRoutes";
 import cors from "cors";
 require('dotenv').config();
-import "reflect-metadata";
-import './shared /container'
 
 const app: Express = express();
 const Port = process.env.PORT || 3012;
