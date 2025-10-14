@@ -1,7 +1,7 @@
+import { injectable, inject } from "tsyringe";
 import { taskschema } from "../validations/taskvalidation";
 import { Task } from "../prisma/entity/task.entity";
 import { PrismaTaskRepository } from "../repository/prisma-task-repository";
-import { injectable, inject } from "tsyringe";
 
 
 @injectable()

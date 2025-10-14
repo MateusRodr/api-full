@@ -1,4 +1,3 @@
-// src/prisma/entity/task.entity.ts
 export interface taskProps {
   title: string;
   status: "in-progress" | "completed";

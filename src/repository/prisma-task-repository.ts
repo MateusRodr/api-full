@@ -1,7 +1,7 @@
+import { injectable } from "tsyringe";
 import { PrismaClient } from "@prisma/client";
 import { Task } from "../prisma/entity/task.entity";
 import { PrismaTaskMapper } from "../prisma/mappers/prisma-task-mapper";
-import { injectable } from "tsyringe";
 
 const prisma = new PrismaClient();
 
@@ -24,7 +24,7 @@ export class PrismaTaskRepository {
   }
 
   async findByTitle(title: string): Promise<Task | null> {
-    const task = await prisma.task.findFirst({ where: { Title: title } });
+    const task = await prisma.task.findFirst({ where: { title: title } });
     return task ? PrismaTaskMapper.toDomain(task) : null;
   }
 

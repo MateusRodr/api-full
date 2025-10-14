@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "db:test:push": "dotenv -e .env.test -- prisma db push --schema=./src/prisma/schema.prisma --force-reset",
+    "db:test:generate": "dotenv -e .env.test -- prisma generate --schema=./src/prisma/schema.prisma",
     "test": "jest --passWithNoTests",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
@@ -19,6 +21,7 @@
     "@types/jest": "^30.0.0",
     "@types/supertest": "^6.0.3",
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
+    "dotenv-cli": "^10.0.0",
     "jest": "^30.2.0",
     "prisma": "^6.16.3",
     "supertest": "^7.1.4",

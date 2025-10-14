@@ -1,7 +1,7 @@
+import {container} from "tsyringe";
 import { RequestHandler } from "express";
 import  {TaskService} from '../service/taskService'
 import z from "zod";
-import {container} from "tsyringe";
 
 const taskService = container.resolve(TaskService);
 
