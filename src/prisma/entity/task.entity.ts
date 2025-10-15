@@ -1,34 +1,30 @@
 export interface taskProps {
   title: string;
-  status: "in-progress" | "completed";
+  status: 'in-progress' | 'completed';
 }
 
 export class Task {
-  private _id?: number;
   private props: taskProps;
+  public readonly id: number;
 
   constructor(props: taskProps, id?: number) {
     this.props = props;
-    this._id = id;
+    this.id = id ?? 0;
   }
 
-  get id(): number | undefined {
-    return this._id;
-  }
-
-  get title(): string {
+  get title() {
     return this.props.title;
   }
 
-  get status(): "in-progress" | "completed" {
+  get status() {
     return this.props.status;
   }
 
-  set title(newTitle: string) {
-    this.props.title = newTitle;
+  set title(title: string) {
+    this.props.title = title;
   }
 
-  set status(newStatus: "in-progress" | "completed") {
-    this.props.status = newStatus;
+  set status(status: 'in-progress' | 'completed') {
+    this.props.status = status;
   }
 }

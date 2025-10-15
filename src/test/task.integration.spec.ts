@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env.test' });
-import { TaskService } from "../service/taskService";
+import { TaskService } from "../services/taskService";
 import { PrismaClient } from "@prisma/client";
 import { PrismaTaskRepository } from "../repository/prisma-task-repository";
 

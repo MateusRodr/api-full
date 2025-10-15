@@ -8,7 +8,7 @@ module.exports = {
   transform: {
     ...tsJestTransformCfg,
   },
-  setupFiles: ["dotenv/config", "reflect-metadata"], // 👉 garante que o .env.test é lido
+  setupFiles: ["dotenv/config", "reflect-metadata"],
   moduleFileExtensions: ["ts", "js", "json"],
   testMatch: ["**/?(*.)+(spec|test).ts"],
   clearMocks: true,

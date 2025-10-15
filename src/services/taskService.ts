@@ -17,6 +17,10 @@ export class TaskService {
     if (titleExists) {
       throw new Error("Task with this title already exists");
     }
+    const validStatuses = ['in-progress', 'completed']
+    if (!validStatuses.includes(parsedData.status)) {
+      throw new Error(`Invalid status. Valid statuses are: ${validStatuses.join(", ")}`);
+    }
 
     const task = new Task({
       title: parsedData.title,
@@ -27,7 +31,12 @@ export class TaskService {
   }
 
   async findAll() {
-    return await this.taskRepository.findAll();
+    const tasks = await this.taskRepository.findAll();
+    return tasks.map(task => ({
+      id: task.id,
+      title: task.title,
+      status: task.status
+    }));
   }
 
   async findById(id: number) {

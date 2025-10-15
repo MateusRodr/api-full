@@ -3,17 +3,15 @@ import './shared /container'
 import express, { Express } from "express";
 import taskRoutes from "./routes/taskRoutes";
 import cors from "cors";
-require('dotenv').config();
+import { setupSwagger } from "./swagger";
 
-const app: Express = express();
-const Port = process.env.PORT || 3012;
+const app: Express = express()
 
 app.use(cors());
 app.use(express.json());
-app.use("/", taskRoutes);
 
-app.listen(Port, () => {
-  console.log(`Server is running on port ${Port}`);
-});
+app.use("/user", taskRoutes);
+
+setupSwagger(app)
 
 export default app;
