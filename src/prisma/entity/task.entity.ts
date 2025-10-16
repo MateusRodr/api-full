@@ -27,4 +27,13 @@ export class Task {
   set status(status: 'in-progress' | 'completed') {
     this.props.status = status;
   }
+
+  toJSON() {
+    return {
+      id: this.id,
+      title: this.title,
+      status: this.status,
+    };
+  }
 }
+
