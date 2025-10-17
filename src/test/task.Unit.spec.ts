@@ -8,7 +8,7 @@ import { PrismaTaskRepository } from "../repository/prisma-task-repository";
 process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:./test.db';
 
 const prisma = new PrismaClient();
-const repository = new PrismaTaskRepository();
+const repository = new PrismaTaskRepository(prisma);
 const service = new TaskService(repository);
 
 let createdTaskId: number;
