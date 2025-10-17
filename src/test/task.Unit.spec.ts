@@ -52,6 +52,13 @@ describe("Task Service Integration Tests", () => {
         expect(tasks.length).toBeGreaterThanOrEqual(1);
     })
 
+    it("should get a task by ID", async () => {
+        const task = await service.findById(createdTaskId);
+        expect(task).toHaveProperty('id');
+        expect(task.id).toBe(createdTaskId);
+        expect(task.title).toBe(initialTaskData.title);
+    });
+
     it('should update a task', async () => {
         const updated = await service.update(createdTaskId, {
             title: 'Updated Task',

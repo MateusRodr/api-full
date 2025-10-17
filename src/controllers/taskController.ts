@@ -5,7 +5,6 @@ import z from "zod";
 
 const taskService = container.resolve(TaskService);
 
-
 export const getAllTasks: RequestHandler = async (req, res) => {
     try {
         const tasks = await taskService.findAll();
