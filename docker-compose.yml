@@ -6,8 +6,10 @@ services:
     container_name: api
     ports:
       - "3013:3012"
+    env_file:
+      - .env
     volumes:
-      - ./prisma/dev.db:/app/prisma/dev.db
+      - ./apibd.db:/app/apibd.db
     command: npm start
 
   test:
