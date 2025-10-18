@@ -3,32 +3,6 @@ import { createTask, deleteTask, getAllTasks, getTaskById, updateTask } from "..
 
 const router = Router();
 
-/**
- * @swagger
- * /user:
- *   get:
- *     summary: Retrieve a list of tasks
- *     responses:
- *       200:
- *         description: A list of tasks
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   id:
- *                     type: integer
- *                     example: 1
- *                   title:
- *                     type: string
- *                     example: "New Task"
- *                   status:
- *                     type: string
- *                     example: "completed"
- */
-router.get("/", getAllTasks);
 
 /**
  * @swagger
@@ -71,6 +45,34 @@ router.get("/", getAllTasks);
  *                   example: "in-progress"
  */
 router.post("/", createTask);
+
+/**
+ * @swagger
+ * /user:
+ *   get:
+ *     summary: Retrieve a list of tasks
+ *     responses:
+ *       200:
+ *         description: A list of tasks
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     example: 1
+ *                   title:
+ *                     type: string
+ *                     example: "New Task"
+ *                   status:
+ *                     type: string
+ *                     example: "completed"
+ */
+router.get("/", getAllTasks);
+
 
 /**
  * @swagger

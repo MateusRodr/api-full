@@ -7,20 +7,28 @@ Desenvolvida com **Node.js** e **Prisma**.
 
 ## 🧰 Tecnologias
 
-- Node.js  
-- Prisma  
-- SQLite  
-- Docker (opcional)
-
+- **Node.js** 20+
+- **TypeScript**
+- **Prisma ORM**
+- **SQLite** (Desenvolvimento/Testes)
+- **Express.js**
+- **Jest** (Testes)
+- **Docker** (Opcional)
+- **Swagger/OpenAPI** (Documentação)
+- **tsyringe** (Injeção de Dependência)
 ---
 
 ## ⚙️ Funcionalidades
 
-- Criar uma nova task  
-- Atualizar uma task existente  
-- Listar todas as tasks  
-- Buscar task por ID  
-- Deletar uma task  
+- ✅ Criar uma nova task
+- ✅ Listar todas as tasks
+- ✅ Buscar task por ID
+- ✅ Atualizar uma task existente
+- ✅ Deletar uma task
+- ✅ Validação de dados com Zod
+- ✅ Documentação automática com Swagger
+- ✅ Testes unitários
+- ✅ Injeção de dependência
 
 ---
 
@@ -62,8 +70,7 @@ E por fim, inicie o servidor:
 
 ```bash
 npm run dev
-# ou
-yarn dev
+
 ```
 
 A API rodará em:  
@@ -71,6 +78,12 @@ A API rodará em:
 
 ---
 
+📚 Documentação da API
+
+A documentação interativa está disponível em:
+http://localhost:3012/api-docs
+
+---
 ## 📡 Endpoints da API
 
 ### 🔹 GET `/user`
@@ -81,7 +94,7 @@ Retorna todas as tasks.
 [
   {
     "id": 1,
-    "title": "Comprar leite",
+    "title": "estudar Laravel",
     "status": "in-progress"
   }
 ]
@@ -130,9 +143,10 @@ Deleta uma task pelo ID.
 Se houver testes, execute com:
 
 ```bash
+# Configurar e executar testes
+npm run db:test:push
+npm run db:test:generate
 npm test
-# ou
-yarn test
 ```
 
 ---
