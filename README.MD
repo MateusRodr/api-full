@@ -35,7 +35,7 @@ Desenvolvida com **Node.js** e **Prisma**.
 ## 📋 Pré-requisitos
 
 - Node.js >= 20  
-- npm ou yarn  
+- npm
 - Banco de dados: SQLite  
 - Docker (opcional)
 
@@ -140,7 +140,6 @@ Deleta uma task pelo ID.
 ---
 
 ## 🧪 Testes (opcional)
-Se houver testes, execute com:
 
 ```bash
 # Configurar e executar testes

@@ -1,9 +1,7 @@
-import { injectable } from "tsyringe";
-import { PrismaClient } from "@prisma/client";
-import { Task } from "../prisma/entity/task.entity";
-import { PrismaTaskMapper } from "../prisma/mappers/prisma-task-mapper";
-
-
+import { injectable } from 'tsyringe';
+import { PrismaClient } from '@prisma/client';
+import { Task } from '../prisma/entity/task.entity';
+import { PrismaTaskMapper } from '../prisma/mappers/task.mapper';
 
 @injectable()
 export class PrismaTaskRepository {

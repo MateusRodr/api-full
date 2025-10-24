@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./apibd.db:/app/apibd.db
+      - ./apibd.db:/app/apibd2.db
     command: npm start
 
   test:

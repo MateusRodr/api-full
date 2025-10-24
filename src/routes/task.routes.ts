@@ -1,8 +1,13 @@
-import { Router } from "express";
-import { createTask, deleteTask, getAllTasks, getTaskById, updateTask } from "../controllers/taskController";
+import { Router } from 'express';
+import {
+  createTask,
+  deleteTask,
+  getAllTasks,
+  getTaskById,
+  updateTask,
+} from '../controllers/task.Controller';
 
 const router = Router();
-
 
 /**
  * @swagger
@@ -44,7 +49,7 @@ const router = Router();
  *                   type: string
  *                   example: "in-progress"
  */
-router.post("/", createTask);
+router.post('/', createTask);
 
 /**
  * @swagger
@@ -71,8 +76,7 @@ router.post("/", createTask);
  *                     type: string
  *                     example: "completed"
  */
-router.get("/", getAllTasks);
-
+router.get('/', getAllTasks);
 
 /**
  * @swagger
@@ -106,7 +110,7 @@ router.get("/", getAllTasks);
  *       404:
  *         description: Task not found
  */
-router.get("/:id", getTaskById);
+router.get('/:id', getTaskById);
 
 /**
  * @swagger
@@ -154,7 +158,7 @@ router.get("/:id", getTaskById);
  *       404:
  *         description: Task not found
  */
-router.put("/:id", updateTask);
+router.put('/:id', updateTask);
 
 /**
  * @swagger
@@ -174,6 +178,6 @@ router.put("/:id", updateTask);
  *       404:
  *         description: Task not found
  */
-router.delete("/:id", deleteTask);
+router.delete('/:id', deleteTask);
 
 export default router;
