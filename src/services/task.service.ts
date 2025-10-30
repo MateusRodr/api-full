@@ -1,13 +1,13 @@
 import { injectable, inject } from 'tsyringe';
 import { taskschema } from '../validations/task.validation';
 import { Task } from '../prisma/entity/task.entity';
-import { PrismaTaskRepository } from '../repository/task.repository';
+import { ITaskRepository } from '../repository/interfaces/ITaskRepository';
 
 @injectable()
 export class TaskService {
   constructor(
-    @inject(PrismaTaskRepository)
-    private taskRepository: PrismaTaskRepository,
+    @inject('ITaskRepository')
+    private taskRepository: ITaskRepository,
   ) {}
 
   async create(data: any) {
@@ -31,11 +31,7 @@ export class TaskService {
 
   async findAll() {
     const tasks = await this.taskRepository.findAll();
-    return tasks.map((task) => ({
-      id: task.id,
-      title: task.title,
-      status: task.status,
-    }));
+    return tasks.map((task) => task.toJSON());
   }
 
   async findById(id: number) {
@@ -49,14 +45,7 @@ export class TaskService {
     const existing = await this.taskRepository.findById(id);
     if (!existing) throw new Error('Task not found');
 
-    const updatedTask = new Task(
-      {
-        title: parsedData.title,
-        status: parsedData.status,
-      },
-      id,
-    );
-
+    const updatedTask = new Task(parsedData, id);
     return await this.taskRepository.update(id, updatedTask);
   }
 

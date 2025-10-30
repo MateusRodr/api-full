@@ -2,10 +2,12 @@ import { injectable } from 'tsyringe';
 import { PrismaClient } from '@prisma/client';
 import { Task } from '../prisma/entity/task.entity';
 import { PrismaTaskMapper } from '../prisma/mappers/task.mapper';
+import { ITaskRepository } from './interfaces/ITaskRepository';
 
 @injectable()
-export class PrismaTaskRepository {
+export class TaskRepository implements ITaskRepository {
   constructor(private prisma: PrismaClient) {}
+
   async create(task: Task): Promise<Task> {
     const data = PrismaTaskMapper.toPrisma(task);
     const created = await this.prisma.task.create({ data });

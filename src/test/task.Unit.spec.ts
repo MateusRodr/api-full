@@ -3,12 +3,12 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env.test' });
 import { TaskService } from '../services/task.service';
 import { PrismaClient } from '@prisma/client';
-import { PrismaTaskRepository } from '../repository/task.repository';
+import { TaskRepository } from '../repository/task.repository';
 
 process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:./test.db';
 
 const prisma = new PrismaClient();
-const repository = new PrismaTaskRepository(prisma);
+const repository = new TaskRepository(prisma);
 const service = new TaskService(repository);
 
 let createdTaskId: number;
