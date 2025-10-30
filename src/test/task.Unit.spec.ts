@@ -1,76 +1,77 @@
 import 'reflect-metadata';
-import dotenv from 'dotenv';
-dotenv.config({ path: '.env.test' });
 import { TaskService } from '../services/task.service';
-import { PrismaClient } from '@prisma/client';
-import { TaskRepository } from '../repository/task.repository';
 
-process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:./test.db';
-
-const prisma = new PrismaClient();
-const repository = new TaskRepository(prisma);
-const service = new TaskService(repository);
-
-let createdTaskId: number;
-const initialTaskData = {
-  title: 'Initial Test Task',
-  status: 'in-progress',
+const mockRepository = {
+  create: jest.fn(),
+  findAll: jest.fn(),
+  findById: jest.fn(),
+  findByTitle: jest.fn(),
+  update: jest.fn(),
+  delete: jest.fn(),
 };
 
-beforeAll(async () => {
-  await prisma.$connect();
-  await prisma.task.deleteMany();
-});
+const service = new TaskService(mockRepository as any);
 
-beforeEach(async () => {
-  const newTask = await service.create(initialTaskData);
-  if (typeof newTask.id !== 'number') {
-    throw new Error('Task ID is undefined after creation');
-  }
-  createdTaskId = newTask.id;
-});
+describe('TaskService Unit Tests (Mocked Repository)', () => {
+  it('should create a new Task', async () => {
+    mockRepository.findByTitle.mockResolvedValueOnce(null);
+    mockRepository.create.mockResolvedValueOnce({
+      id: 1,
+      title: 'Test Task',
+      status: 'in-progress',
+    });
 
-afterEach(async () => {
-  await prisma.task.deleteMany();
-});
-
-afterAll(async () => {
-  await prisma.$disconnect();
-});
-
-describe('Task Service Integration Tests', () => {
-  it('should create a new Task (verified by beforeEach)', async () => {
-    expect(createdTaskId).toBeDefined();
-    const task = await service.findById(createdTaskId);
-    expect(task.title).toBe(initialTaskData.title);
+    const task = await service.create({ title: 'Test Task', status: 'in-progress' });
+    expect(task).toHaveProperty('id');
+    expect(task.title).toBe('Test Task');
   });
 
   it('should get all tasks', async () => {
+    mockRepository.findAll.mockResolvedValueOnce([
+      { toJSON: () => ({ id: 1, title: 'Task A', status: 'in-progress' }) },
+    ]);
+
     const tasks = await service.findAll();
-    expect(tasks).toBeInstanceOf(Array);
-    expect(tasks.length).toBeGreaterThanOrEqual(1);
+    expect(tasks.length).toBe(1);
+    expect(tasks[0].title).toBe('Task A');
   });
 
   it('should get a task by ID', async () => {
-    const task = await service.findById(createdTaskId);
-    expect(task).toHaveProperty('id');
-    expect(task.id).toBe(createdTaskId);
-    expect(task.title).toBe(initialTaskData.title);
+    mockRepository.findById.mockResolvedValueOnce({
+      id: 1,
+      title: 'Test Task',
+      status: 'in-progress',
+    });
+
+    const task = await service.findById(1);
+    expect(task.title).toBe('Test Task');
   });
 
   it('should update a task', async () => {
-    const updated = await service.update(createdTaskId, {
+    mockRepository.findById.mockResolvedValueOnce({
+      id: 1,
+      title: 'Old Task',
+      status: 'in-progress',
+    });
+    mockRepository.update.mockResolvedValueOnce({
+      id: 1,
       title: 'Updated Task',
       status: 'completed',
     });
-    expect(updated).toHaveProperty('id');
-    expect(updated.id).toBe(createdTaskId);
-    expect(updated.title).toBe('Updated Task');
+
+    const updated = await service.update(1, { title: 'Updated Task', status: 'completed' });
     expect(updated.status).toBe('completed');
+    expect(updated.title).toBe('Updated Task');
   });
 
   it('should delete a task', async () => {
-    await service.delete(createdTaskId);
-    await expect(service.findById(createdTaskId)).rejects.toThrow('Task not found');
+    mockRepository.findById.mockResolvedValueOnce({
+      id: 1,
+      title: 'Task to Delete',
+      status: 'completed',
+    });
+    mockRepository.delete.mockResolvedValueOnce(undefined);
+
+    await expect(service.delete(1)).resolves.toBeUndefined();
   });
 });
