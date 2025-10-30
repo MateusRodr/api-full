@@ -1,4 +1,4 @@
-import { Task } from '../../prisma/entity/task.entity';
+import { Task } from '../../entity/task.entity';
 
 export interface ITaskRepository {
   create(task: Task): Promise<Task>;
